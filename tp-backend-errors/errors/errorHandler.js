@@ -1,12 +1,14 @@
 function errorHandler(err, req, res, next) {
-    const statusCode = err.status || 500;
-    res.status(statusCode).json({
-      error: {
-        code: statusCode,
-        message: err.message || 'Erreur interne du serveur',
-      },
-    });
-  }
-  
- module.exports = { errorHandler };
-  
+  const status = err.status || 500;
+  const message = err.message || 'Erreur interne du serveur';
+
+  console.error(`[Erreur] Statut : ${status}, Message : ${message}`);
+  res.status(status).json({
+    error: {
+      status,
+      message,
+    },
+  });
+}
+
+module.exports = { errorHandler };
