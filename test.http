@@ -1,0 +1,72 @@
+# Tester une requête POST avec des données invalides (Erreur 400 - Bad Request)
+POST http://localhost:3000/api/bad-request
+Content-Type: application/json
+
+{
+  "name": ""
+}
+
+###
+
+# Tester une requête GET pour une ressource inexistante (Erreur 404 - Not Found)
+GET http://localhost:3000/api/not-found
+
+###
+
+# Tester une requête GET pour une ressource non autorisée (Erreur 401 - Unauthorized)
+GET http://localhost:3000/api/unauthorized
+
+###
+
+# Tester une requête GET pour un accès interdit (Erreur 403 - Forbidden)
+GET http://localhost:3000/api/forbidden
+
+###
+
+# Tester une requête POST avec des données valides (Validation réussie)
+POST http://localhost:3000/api/validate
+Content-Type: application/json
+
+{
+  "name": "Valid Name"
+}
+
+###
+
+# Tester une requête POST avec un conflit (Erreur 409 - Conflict)
+POST http://localhost:3000/api/conflict
+Content-Type: application/json
+
+{
+  "name": "existant"
+}
+
+###
+
+# Tester une requête POST avec des données non valides (Erreur 422 - Unprocessable Entity)
+POST http://localhost:3000/api/unprocessable
+Content-Type: application/json
+
+{
+  "email": "invalid-email"
+}
+
+###
+
+# Tester une requête POST avec des données valides pour l'e-mail
+POST http://localhost:3000/api/unprocessable
+Content-Type: application/json
+
+{
+  "email": "example@example.com"
+}
+
+###
+
+# Tester une requête GET pour une erreur interne (Erreur 500 - Internal Server Error)
+GET http://localhost:3000/api/internal-error
+
+###
+
+# Récupérer la liste des erreurs documentées
+GET http://localhost:3000/api/errors
